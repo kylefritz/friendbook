@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Friendbook</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div class="container">
+          <div class="header">
+            <nav>
+              <ul class="nav nav-pills pull-right">
+                <li role="presentation">
+                  <%= link_to "Timeline", timeline_path %>
+                </li>
+                <li role="presentation">
+                  <%= link_to "Friends", friends_path %>
+                </li>
+                <li role="presentation" class="active">
+                  <% if current_user.present? %>
+                    <%= link_to current_user.name, session_path, data:{confirm: 'Sign Out?'}, method: "DELETE" %>
+                  <% else %>
+                    <%= link_to "Sign In", new_session_path %>
+                  <% end %>
+                </li>
+              </ul>
+            </nav>
+            <h3 class="text-muted">
+              <%= link_to "Friendbook", root_path %>
+            </h3>
+          </div>
+          <% if flash[:notice] %>
+            <div class="alert alert-info" role="alert">
+              <%= flash[:notice] %>
+            </div>
+          <% end %>
+
+          <%= yield %>
+          <!--
+          <div class="row marketing">
+            <div class="col-lg-6">
+              <h4>Subheading</h4>
+              <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+
+              <h4>Subheading</h4>
+              <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
+
+              <h4>Subheading</h4>
+              <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+            </div>
+
+            <div class="col-lg-6">
+              <h4>Subheading</h4>
+              <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+
+              <h4>Subheading</h4>
+              <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
+
+              <h4>Subheading</h4>
+              <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+            </div>
+          </div>
+          -->
+
+          <footer class="footer">
+            <p>&copy; Friendbook 2014</p>
+          </footer>
+
+        </div> <!-- /container -->
+  </body>
+</html>

@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-lg-6">
+    <fieldset>
+      <legend>Sign In</legend>
+      <%= form_tag session_path do %>
+        <div class="form-group">
+          <label for="user-id">User: </label>
+          <select name='user_id' id="user-id" class="form-control">
+            <% for user in User.order(:name) %>
+              <option value='<%= user.id %>'><%= user.name %></option>
+            <% end %>
+          </select>
+        </div>
+        <br>
+
+        <%= submit_tag 'Sign In', class: 'btn btn-default' %>
+      <% end %>
+    </fieldset>
+    <br>
+  </div>
+
+</div>
