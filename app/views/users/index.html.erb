@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-lg-6">
+    <h1>Users</h1>
+    <% if User.any? %>
+      <ul>
+        <% for user in User.order(:name) %>
+          <li style="padding: 10px 0">
+            <%= user.name %>
+            <% unless user.friends_with(current_user) %>
+              <%= button_to 'Add as friend', add_as_friend_user_path(user), class: 'btn btn-sm btn-default' %>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p><strong>No Users!!</strong></p>
+    <% end %>
+  </div>
+</div>
